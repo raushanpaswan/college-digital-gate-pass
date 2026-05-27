@@ -1,0 +1,6 @@
+{
+  "name": "College Digital Gate Pass",
+  "description": "A modern mobile-first digital gate pass (E-Pass) application for students, teacher guardians, and HODs, featuring pass requests tracking, vertical timelines, and approval workflows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

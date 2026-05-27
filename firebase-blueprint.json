@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents college students and faculty staff members registered in the system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique user authentication ID" },
+        "email": { "type": "string", "description": "Registered email address" },
+        "name": { "type": "string", "description": "Full name of the user" },
+        "role": { "type": "string", "enum": ["student", "tg", "hod"], "description": "System role authority level" },
+        "rollNumber": { "type": "string", "description": "University enrollment roll number of students" },
+        "branch": { "type": "string", "description": "Department subdivision of students/staff" },
+        "tgName": { "type": "string", "description": "Assigned Tutor Guardian name" }
+      },
+      "required": ["uid", "email", "name", "role", "branch"]
+    },
+    "PassRequest": {
+      "title": "PassRequest",
+      "description": "Information regarding a single digital gate pass permission",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique e-pass tracking ID" },
+        "studentUid": { "type": "string", "description": "Associated student reference ID" },
+        "studentName": { "type": "string", "description": "Student full name" },
+        "studentRollNumber": { "type": "string", "description": "Student academic roll" },
+        "studentBranch": { "type": "string", "description": "Academic division" },
+        "studentEmail": { "type": "string", "description": "Student notification email" },
+        "tgName": { "type": "string", "description": "Assigned gate out tutor validator" },
+        "destination": { "type": "string", "description": "Declared outbound target destination" },
+        "reason": { "type": "string", "description": "Factual reasons for campus leave request" },
+        "leaveDate": { "type": "string", "description": "Planned leave date" },
+        "leaveTime": { "type": "string", "description": "Planned outbound clock time" },
+        "returnDate": { "type": "string", "description": "Expected return date" },
+        "returnTime": { "type": "string", "description": "Expected inbound clock time" },
+        "status": { "type": "string", "enum": ["pending", "approved_tg", "approved", "rejected"], "description": "Status code tracking" },
+        "createdAt": { "type": "string", "description": "Date of request generation" }
+      },
+      "required": [
+        "id",
+        "studentUid",
+        "studentName",
+        "studentRollNumber",
+        "studentBranch",
+        "destination",
+        "reason",
+        "leaveDate",
+        "leaveTime",
+        "status",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles database"
+    },
+    "requests/{requestId}": {
+      "schema": "PassRequest",
+      "description": "Submitted digital gate pass schedules"
+    }
+  }
+}
